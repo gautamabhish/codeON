@@ -15,7 +15,7 @@ const Card = () => {
 
 
 
-    <div className='bg-amber-600 w-[500px] rounded-[32px] h-[700px] ml-4 flex justify-center items-center relative'>
+    <div className='bg-amber-500 w-[500px] rounded-[32px] h-[700px] ml-4 flex justify-center items-center relative'>
       <div className='rounded-[30px] bg-[#233050] w-[488px] h-[689px] flex justify-center items-center relative'>
         <div className='relative rounded-[17px] m-2 w-[459px] h-[652px] bg-gradient-to-b from-[#16202994] to-[#162029] flex flex-col  '>
 
