@@ -14,6 +14,25 @@ import CardFront from "./CardFront";
 import CardBack from './CardBack';
 import CustomAlert from '../modals/CustomAlert';
 import flipSound from '../assets/flipSound.mp3'
+
+import dvancemale from '../assets/advancemale.jpg';
+import beginermale from '../assets/beginermale.jpg';
+import beginmale from '../assets/beginmale.jpg';
+import beginerdanger2 from '../assets/beginerdanger2.jpg';
+import beginerdangeranimal from '../assets/beginerdangeranimal.jpg';
+import beginerdanger from '../assets/beginerdanger.jpg';
+import beginerfemale from '../assets/beginerfemale.jpg';
+import inetrmediatefemale from '../assets/inetrmediatefemale.jpg';
+import poweranimal from '../assets/poweranimal.jpg';
+import powerfulanimal2 from '../assets/powerfulanimal2.jpg';
+import femalegod from '../assets/femalegod.jpg';
+import god from '../assets/god.jpg';
+import godmale from '../assets/godmale.jpg';
+import femaleGod from '../assets/femalegod.jpg'
+import { useMemo } from "react";
+
+
+
 const HomePage = () => {
   const [username, setUsername] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState(null);
@@ -26,11 +45,24 @@ const HomePage = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [usernameRef, setUsernameRef] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [charImg, setCharImg] = useState(null); // Store chosen image here
+
+
+
+
   const [totalUsers, setTotalUsers] = useState(() => {
     return localStorage.getItem("totalUsers")
       ? JSON.parse(localStorage.getItem("totalUsers"))
       : 0;
   });
+  useEffect(() => {
+    if (generatedCard) {
+      const { rank, totalUsers } = generatedCard;
+      const percentile = (rank / totalUsers) * 100;
+      const chosen = chooseImage(percentile);
+      setCharImg(chosen);
+    }
+  }, [generatedCard]);
 
   function formatNumber(num) {
     if (num >= 1_000_000_000) {
@@ -97,6 +129,8 @@ const HomePage = () => {
           color: res.data.color
         });
         setGenerateCount(prev => prev + 1);
+      ;
+
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -117,6 +151,34 @@ const HomePage = () => {
       }
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+
+  const chooseImage = (percentile) => {
+    const beginnerTier = [
+     
+      beginmale,
+     
+     
+      beginerdanger,
+      beginerfemale,
+    ];
+    const intermediateTier = [ inetrmediatefemale , beginerdanger2,];
+    const advancedTier = [ dvancemale , beginermale, beginerdangeranimal,];
+    const powerTier = [ poweranimal, powerfulanimal2 ];
+    const godTier = [ femalegod, god, godmale ];
+
+    if (percentile <= 5) {
+      return godTier[Math.floor(Math.random() * godTier.length)];
+    } else if (percentile <= 15) {
+      return powerTier[Math.floor(Math.random() * powerTier.length)];
+    } else if (percentile <= 30) {
+      return advancedTier[Math.floor(Math.random() * advancedTier.length)];
+    } else if (percentile <= 70) {
+      return intermediateTier[Math.floor(Math.random() * intermediateTier.length)];
+    } else {
+      return beginnerTier[Math.floor(Math.random() * beginnerTier.length)];
     }
   };
 
@@ -297,7 +359,7 @@ const HomePage = () => {
           {/* Right Panel - Card Preview */}
           <div className="flex justify-center items-center h-full w-full flex-1" >
             <div ref={cardRef} className="bg-[#2a2d3a]/50 min-h-[300px] rounded-2xl border-2 w-full h-full flex items-center justify-center overflow-hidden">
-              <div className="w-full h-auto max-w-[90%] max-h-[400px] aspect-video flex justify-center items-center transform ">
+              <div className="w-full h-auto max-w-[90%] max-h-[500px] aspect-video flex justify-center items-center transform ">
                 {generatedCard ? (<div
                   className="relative w-64 h-40 perspective-1000 cursor-pointer"
                   onClick={()=>generatedCard&& handleFlip()}
@@ -319,7 +381,9 @@ const HomePage = () => {
                         rank={generatedCard?.rank}
                         totalUsers={generatedCard?.totalUsers}
                         qrCode={generatedCard?.qrCode}
-                        color={generatedCard?.color}></CardFront>
+                        color={generatedCard?.color}
+                        charImg={charImg}
+                        ></CardFront>
                     </div>
 
                     {/* Back Side */}
@@ -340,27 +404,10 @@ const HomePage = () => {
           </div>
 
           {/* Hidden div for downloading both sides */}
-          <div ref={downloadRef} className="  hidden w-[1080px] h-[1080px] items-center flex-row bg-[#1a1b26] gap-8 transform scale-[0.5]">
-            <div className='p-2'>
-              <CardFront
-                name={generatedCard?.name}
-                overallScore={generatedCard?.overallScore}
-                platform={generatedCard?.platform}
-                problemSolvingScore={generatedCard?.problemSolvingScore}
-                rank={generatedCard?.rank}
-                totalUsers={generatedCard?.totalUsers}
-                qrCode={generatedCard?.qrCode}
-                color={generatedCard?.color}
-              />
-            </div>
-            <div className='ml-4 p--2'>
-              <CardBack
-                color={generatedCard?.color}
-                platform={generatedCard?.platform}
-                totalPlayers={generatedCard?.totalUsers}
-              />
-            </div>
-          </div>
+        
+         
+       
+        
 
 
         </div>
@@ -399,7 +446,28 @@ const HomePage = () => {
         </a>
       </div>
 
-     
+      <div ref={downloadRef} className=" hidden mr-8 w-[1080px] h-[1080px] justify-evenly items-center flex-row bg-[#1a1b26] gap-8 transform scale-[0.5]">
+            <div className='p-2'>
+              <CardFront
+                name={generatedCard?.name}
+                overallScore={generatedCard?.overallScore}
+                platform={generatedCard?.platform}
+                problemSolvingScore={generatedCard?.problemSolvingScore}
+                rank={generatedCard?.rank}
+                totalUsers={generatedCard?.totalUsers}
+                qrCode={generatedCard?.qrCode}
+                color={generatedCard?.color}
+                charImg={charImg} 
+              />
+            </div>
+            <div className='ml-4 p--2'>
+              <CardBack
+                color={generatedCard?.color}
+                platform={generatedCard?.platform}
+                totalPlayers={generatedCard?.totalUsers}
+              />
+            </div>
+          </div>
 
     </div>
   );

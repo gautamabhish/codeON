@@ -13,11 +13,19 @@ const CardBack = ({color, platform , totalPlayers}) => {
     leetcode: Leetcode,
   };
   const bgImg = platformImages[platform];
+
+  const epochTime = Date.now();
+
   return (
     <div className={` w-[500px] h-[700px] rounded-[32px] flex justify-center items-center relative`} style={{
       background:color,
     }}>
-
+      <div
+        className="absolute z-[10] left-[6px] top-1/2 transform -translate-y-1/2 -rotate-90 text-white text-xs opacity-50"
+        style={{ whiteSpace: 'nowrap' }}
+      >
+        {epochTime}
+      </div>
       {/* Inner Card Background */}
       <div className='rounded-[30px] bg-[#233050] w-[488px] h-[689px] flex flex-col items-center p-0 relative'>
 

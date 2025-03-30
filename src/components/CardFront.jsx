@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+// import { useMemo } from 'react';
 import "./card.css";
 import topleftNameField from "../assets/topleftName.svg";
 import topleftImgField from "../assets/topleftIMg.svg";
 import githublogo from "../assets/githublogo.png";
 import topleftTaglineField from "../assets/tagline.svg";
 import CodeONCut from "../assets/codeONcut.png";
-import CharImg from "../assets/charimg.png"
+// import CharImg from "../assets/charimg.png"
 import PlayerNameField from "../assets/playernamefield.svg"
 import PlayerRankField from "../assets/RankField.svg"
 import Barcode from "../assets/barcode.png"
 import TopleftGithub from "../assets/TOPLEFTGITHUB.svg"
 import TopleftLeetcode from "../assets/leetcodetopleft.svg"
 import TopleftCodeforces from "../assets/codeforcesTopleft.svg"
-const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUsers, qrCode, color }) => {
+
+
+
+
+const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUsers, qrCode, color,charImg }) => {
   const platformImages = {
     github: TopleftGithub,
     codeforces: TopleftCodeforces,
     leetcode: TopleftLeetcode,
   };
+
+
+
 
   const topleftimg = platformImages[platform] || TopleftLeetcode;
 
@@ -48,8 +56,8 @@ const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUs
                 textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3), -2px -2px 5px rgba(255, 255, 255, 0.2)"
               }}>xp</span>
               <span style={{
-                color: "#aaa",
-                textShadow: "1px 1px 0px #666, -1px -1px 0px #fff"
+                // color: "#aaa",
+                // /textShadow: "1px 1px 0px #666, -1px -1px 0px #fff"
               }} className='text-white font-semibold text-[36px] font-[inter]' >{overallScore} </span>
 
             </div>
@@ -71,7 +79,7 @@ const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUs
               <div
                 className="character-image"
                 style={{
-                  backgroundImage: `url(${CharImg})`,
+                  backgroundImage: `url(${charImg})`,
                   width: "100%",  // Ensures image fills container
                   height: "100%",
                   backgroundSize: "cover",
