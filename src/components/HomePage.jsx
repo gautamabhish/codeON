@@ -30,8 +30,9 @@ import god from '../assets/god.jpg';
 import godmale from '../assets/godmale.jpg';
 import femaleGod from '../assets/femalegod.jpg'
 import { useMemo } from "react";
+import dotenv from "dotenv"
 
-
+dotenv.config();
 
 const HomePage = () => {
   const [username, setUsername] = useState('');
@@ -83,7 +84,7 @@ const HomePage = () => {
 
         // Only fetch if more than 10 minutes have passed since last fetch
         if (!lastFetchTime || now - lastFetchTime > 1 * 60 * 1000) {
-          const res = await axios.get("http://localhost:9999/userCount"); // Replace with actual API
+          const res = await axios.get(`${process.env.BACKSERVER}/userCount`); // Replace with actual API
           localStorage.setItem("totalUsers", JSON.stringify(res.data.totalUsers));
           localStorage.setItem("lastFetchTime", JSON.stringify(now));
           setTotalUsers(formatNumber(res.data.totalUsers));
@@ -113,7 +114,7 @@ const HomePage = () => {
     setErrorMessage(''); // Clear previous error messages
 
     try {
-      const res = await axios.get(`http://localhost:9999/${selectedPlatform}/${username}`, {
+      const res = await axios.get(`${process.env.BACKSERVER}/${selectedPlatform}/${username}`, {
         timeout: 10000
       });
 
