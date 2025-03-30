@@ -149,6 +149,7 @@ const HomePage = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         if (error.response.status === 500) {
+          Inputref?.current?.focus()
           setErrorMessage('Invalid username. Please check and try again.');
         } else {
           Inputref?.current?.focus()
