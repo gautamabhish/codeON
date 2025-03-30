@@ -6,8 +6,9 @@ import ProfileGenerator from './components/HomePage';
 function App() {
 
   return (
-    <div >
+    <div className='h-full' >
         <ProfileGenerator></ProfileGenerator>
+       
     </div>
   );
 }
