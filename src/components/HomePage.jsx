@@ -14,6 +14,7 @@ import CardFront from "./CardFront";
 import CardBack from './CardBack';
 import CustomAlert from '../modals/CustomAlert';
 import flipSound from '../assets/flipSound.mp3'
+import Helper from './Helper';
 
 import dvancemale from '../assets/advancemale.jpg';
 import beginermale from '../assets/beginermale.jpg';
@@ -47,8 +48,7 @@ const HomePage = () => {
   const [usernameRef, setUsernameRef] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [charImg, setCharImg] = useState(null); // Store chosen image here
-
-
+  const Inputref = useRef(null);
 
 
   const [totalUsers, setTotalUsers] = useState(() => {
@@ -151,13 +151,16 @@ const HomePage = () => {
         if (error.response.status === 500) {
           setErrorMessage('Invalid username. Please check and try again.');
         } else {
+          Inputref?.current?.focus()
           setErrorMessage(`Error: ${error.response.data.message || 'Something went wrong'}`);
         }
       } else if (error.request) {
         // The request was made but no response was received
+        Inputref?.current?.focus()
         setErrorMessage('Server error. Unable to contact the server. Please try again later.');
       } else {
         // Something happened in setting up the request that triggered an Error
+        Inputref?.current?.focus()
         setErrorMessage('An unexpected error occurred. Please try again.');
       }
     } finally {
@@ -313,7 +316,7 @@ const HomePage = () => {
            <h2 className="text-l font-bold text-[#9b5de5] mt-3 ">Customize Your Profile Card</h2>
             <input
               type="text"
-              ref={usernameRef}
+              ref={Inputref}
               className="h-12 rounded-xl w-full bg-[#2a2d3a] mt-3 px-5 text-white focus:outline-none focus:ring-2 focus:ring-[#723f94] transition-all"
               placeholder="Enter your coding username"
               value={username}
@@ -408,7 +411,9 @@ const HomePage = () => {
                     </div>
                   </div>
                 </div>) : (
-                  <p className="text-[#a6a6a6]">Your Card Preview</p>
+                  <p className="text-[#a6a6a6] flex flex-col justify-center items-center"><Helper></Helper>
+                  <div className='mt-2 mb-2'>
+                    Create your own Card</div></p>
                 )}
               </div>
             </div>
