@@ -30,11 +30,11 @@ import god from '../assets/god.jpg';
 import godmale from '../assets/godmale.jpg';
 import femaleGod from '../assets/femalegod.jpg'
 import { useMemo } from "react";
-import dotenv from "dotenv"
 
-dotenv.config();
 
 const HomePage = () => {
+  const BACKSERVER = import.meta.env.VITE_BACKSERVER;
+
   const [username, setUsername] = useState('');
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -52,9 +52,14 @@ const HomePage = () => {
 
 
   const [totalUsers, setTotalUsers] = useState(() => {
-    return localStorage.getItem("totalUsers")
-      ? JSON.parse(localStorage.getItem("totalUsers"))
-      : 0;
+    const storedUsers = localStorage.getItem("totalUsers");
+  
+    // Check if the value is valid JSON
+    if (!storedUsers || storedUsers === "undefined") {
+      return 0;
+    }
+  
+    return JSON.parse(storedUsers);
   });
   useEffect(() => {
     if (generatedCard) {
@@ -84,10 +89,14 @@ const HomePage = () => {
 
         // Only fetch if more than 10 minutes have passed since last fetch
         if (!lastFetchTime || now - lastFetchTime > 1 * 60 * 1000) {
-          const res = await axios.get(`${process.env.BACKSERVER}/userCount`); // Replace with actual API
-          localStorage.setItem("totalUsers", JSON.stringify(res.data.totalUsers));
+          const res = await axios.get(`${BACKSERVER}/userCount`); // Replace with actual API
+         if (res.status===200) {
+           localStorage.setItem("totalUsers", JSON.stringify(res.data.totalUsers));
           localStorage.setItem("lastFetchTime", JSON.stringify(now));
+          console.log(res.data.totalUsers)
           setTotalUsers(formatNumber(res.data.totalUsers));
+          
+         }
         }
       } catch (error) {
         console.error("Failed to fetch user count:", error);
@@ -114,11 +123,12 @@ const HomePage = () => {
     setErrorMessage(''); // Clear previous error messages
 
     try {
-      const res = await axios.get(`${process.env.BACKSERVER}/${selectedPlatform}/${username}`, {
+
+      const res = await axios.get(`${BACKSERVER}/${selectedPlatform}/${username}`, {
         timeout: 10000
       });
 
-      if (res.data) {
+      if (res.status ===200) {
         setGeneratedCard({
           name: username,
           overallScore: res.data.overallScore,
