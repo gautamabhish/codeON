@@ -32,7 +32,7 @@ import godmale from '../assets/godmale.jpg';
 import femaleGod from '../assets/femalegod.jpg'
 import beinermale1 from "../assets/beginer male.jpg"
 import beginerfemale2 from "../assets/beginerfemale2.jpg"
-import inetrmediatefemale2 from "../assets/intermediatefemale2.jpg"
+import intermediatefemale2 from "../assets/intermediatefemale2.jpg"
 import intermediatemale2 from "../assets/intermediatemale2.png"
 import advancefemale1 from "../assets/advancefemale1.jpeg";
 import advancefemale2 from "../assets/advancefemale2.jpeg";
@@ -187,7 +187,7 @@ const HomePage = () => {
       beginerdanger,
       beginerfemale,
     ];
-    const intermediateTier = [ inetrmediatefemale , beginerdanger2,intermediatefemale2];
+    const intermediateTier = [ inetrmediatefemale , beginerdanger2,intermediatefemale2,intermediatemale2];
     const advancedTier = [ dvancemale , beginermale,advancefemale1,advancefemale2];
     const powerTier = [ poweranimal, powerfulanimal2 ,powerfemale,powermale1];
     const godTier = [ femalegod, god, godmale ];
