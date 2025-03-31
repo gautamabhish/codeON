@@ -129,7 +129,7 @@ const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUs
                 {rank}/{totalUsers}
               </div>
 
-              <div className=' mb-[4px] mt-[4px] ml-[240px] uppercase italic text-[8px] font-[inter] text-white' >
+              <div className=' mb-[4px] mt-[4px] ml-[220px]  uppercase italic text-[8px] font-[inter] text-white' >
               {tier}
           </div>
             </div>
