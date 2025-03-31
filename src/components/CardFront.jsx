@@ -17,7 +17,7 @@ import TopleftCodeforces from "../assets/codeforcesTopleft.svg"
 
 
 
-const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUsers, qrCode, color,charImg }) => {
+const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUsers, qrCode, color,charImg ,tier}) => {
   const platformImages = {
     github: TopleftGithub,
     codeforces: TopleftCodeforces,
@@ -128,9 +128,13 @@ const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUs
               <div className='absolute top-[8px] text-[32px] font-bold right-[14px] font-[inter] italic'>
                 {rank}/{totalUsers}
               </div>
-            </div>
-          </div>
 
+              <div className=' mb-[4px] mt-[4px] ml-[240px] uppercase italic text-[8px] font-[inter] text-white' >
+              {tier}
+          </div>
+            </div>
+            
+          </div>
 
         </div>
 
@@ -138,7 +142,7 @@ const Card = ({ name, overallScore, platform, problemSolvingScore, rank, totalUs
       </div>
 
 
-
+        
     </div>
 
 

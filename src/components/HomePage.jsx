@@ -57,6 +57,7 @@ const HomePage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [charImg, setCharImg] = useState(null); // Store chosen image here
   const Inputref = useRef(null);
+  const [tier , setTier] = useState('beginner Tier')
 
 
   const [totalUsers, setTotalUsers] = useState(() => {
@@ -192,15 +193,20 @@ const HomePage = () => {
     const powerTier = [ poweranimal, powerfulanimal2 ,powerfemale,powermale1];
     const godTier = [ femalegod, god, godmale ];
 
-    if (percentile <= 5) {
+    if (percentile <= 1) {
+      setTier('god Tier')
       return godTier[Math.floor(Math.random() * godTier.length)];
     } else if (percentile <= 15) {
+      setTier('Power Tier')
       return powerTier[Math.floor(Math.random() * powerTier.length)];
     } else if (percentile <= 30) {
+      setTier('Advance Tier')
       return advancedTier[Math.floor(Math.random() * advancedTier.length)];
     } else if (percentile <= 70) {
+      setTier('intermediate Tier')
       return intermediateTier[Math.floor(Math.random() * intermediateTier.length)];
     } else {
+      setTier('beginner Tier')
       return beginnerTier[Math.floor(Math.random() * beginnerTier.length)];
     }
   };
@@ -406,6 +412,7 @@ const HomePage = () => {
                         qrCode={generatedCard?.qrCode}
                         color={generatedCard?.color}
                         charImg={charImg}
+                        tier = {tier}
                         ></CardFront>
                     </div>
 
@@ -483,6 +490,7 @@ const HomePage = () => {
                 qrCode={generatedCard?.qrCode}
                 color={generatedCard?.color}
                 charImg={charImg} 
+                tier={tier}
               />
             </div>
             <div className='ml-4 p--2'>
