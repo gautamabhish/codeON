@@ -20,7 +20,7 @@ import dvancemale from '../assets/advancemale.jpg';
 import beginermale from '../assets/beginermale.jpg';
 import beginmale from '../assets/beginmale.jpg';
 import beginerdanger2 from '../assets/beginerdanger2.jpg';
-import beginerdangeranimal from '../assets/beginerdangeranimal.jpg';
+// import beginerdangeranimal from '../assets/beginerdangeranimal.jpg';
 import beginerdanger from '../assets/beginerdanger.jpg';
 import beginerfemale from '../assets/beginerfemale.jpg';
 import inetrmediatefemale from '../assets/inetrmediatefemale.jpg';
@@ -30,6 +30,14 @@ import femalegod from '../assets/femalegod.jpg';
 import god from '../assets/god.jpg';
 import godmale from '../assets/godmale.jpg';
 import femaleGod from '../assets/femalegod.jpg'
+import beinermale1 from "../assets/beginer male.jpg"
+import beginerfemale2 from "../assets/beginerfemale2.jpg"
+import inetrmediatefemale2 from "../assets/intermediatefemale2.jpg"
+import intermediatemale2 from "../assets/intermediatemale2.png"
+import advancefemale1 from "../assets/advancefemale1.jpeg";
+import advancefemale2 from "../assets/advancefemale2.jpeg";
+import powermale1 from "../assets/powermale1.jpeg";
+import powerfemale from "../assets/powerfemale.jpeg"
 import { useMemo } from "react";
 
 
@@ -174,14 +182,14 @@ const HomePage = () => {
     const beginnerTier = [
      
       beginmale,
-     
-     
+      beinermale1,
+     beginerfemale2,
       beginerdanger,
       beginerfemale,
     ];
-    const intermediateTier = [ inetrmediatefemale , beginerdanger2,];
-    const advancedTier = [ dvancemale , beginermale, beginerdangeranimal,];
-    const powerTier = [ poweranimal, powerfulanimal2 ];
+    const intermediateTier = [ inetrmediatefemale , beginerdanger2,intermediatefemale2];
+    const advancedTier = [ dvancemale , beginermale,advancefemale1,advancefemale2];
+    const powerTier = [ poweranimal, powerfulanimal2 ,powerfemale,powermale1];
     const godTier = [ femalegod, god, godmale ];
 
     if (percentile <= 5) {
@@ -412,9 +420,9 @@ const HomePage = () => {
                     </div>
                   </div>
                 </div>) : (
-                  <p className="text-[#a6a6a6] flex flex-col justify-center items-center"><Helper></Helper>
+                  <div className="text-[#a6a6a6] flex flex-col justify-center items-center"><Helper></Helper>
                   <div className='mt-2 mb-2'>
-                    Create your own Card</div></p>
+                    Create your own Card</div></div>
                 )}
               </div>
             </div>
@@ -463,7 +471,7 @@ const HomePage = () => {
         </a>
       </div>
 
-      <div ref={downloadRef} className=" hidden mr-8 w-[1080px] h-[1080px] justify-evenly items-center flex-row bg-[#1a1b26] gap-8 transform scale-[0.5]">
+      <div ref={downloadRef} className=" hidden mr-8 w-[1080px] h-[1080px] justify-evenly items-center flex-row bg-[#1a1b26] gap-8 transform scale-[0.7]">
             <div className='p-2'>
               <CardFront
                 name={generatedCard?.name}
