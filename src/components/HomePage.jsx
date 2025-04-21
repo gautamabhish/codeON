@@ -424,7 +424,7 @@ const HomePage = () => {
                       <CardBack color={generatedCard?.color}
                         platform={generatedCard?.platform}
                         totalPlayers={generatedCard?.totalUsers}
-                        percentile={generatedCard?.percentile} 
+                        percentile={100} 
                         name={generatedCard?.username} ></CardBack>
                     </div>
                   </div>
@@ -500,6 +500,8 @@ const HomePage = () => {
                 color={generatedCard?.color}
                 platform={generatedCard?.platform}
                 totalPlayers={generatedCard?.totalUsers}
+                        percentile={percentile} 
+                        name={generatedCard?.username}
               />
             </div>
           </div>
