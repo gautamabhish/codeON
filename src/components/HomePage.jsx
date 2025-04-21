@@ -58,7 +58,7 @@ const HomePage = () => {
   const [charImg, setCharImg] = useState(null); // Store chosen image here
   const Inputref = useRef(null);
   const [tier , setTier] = useState('beginner Tier')
-  let percentile = null
+  const[percentile,setPercentile] = useState(null)
 
   const [totalUsers, setTotalUsers] = useState(() => {
     const storedUsers = localStorage.getItem("totalUsers");
@@ -73,7 +73,7 @@ const HomePage = () => {
   useEffect(() => {
     if (generatedCard) {
       const { rank, totalUsers } = generatedCard;
-       percentile = ((totalUsers-rank) / totalUsers) * 100;
+       setPercentile(()=> ((totalUsers-rank) / totalUsers) * 100);
       const chosen = chooseImage(percentile);
       setCharImg(chosen);
     }
@@ -424,7 +424,7 @@ const HomePage = () => {
                       <CardBack color={generatedCard?.color}
                         platform={generatedCard?.platform}
                         totalPlayers={generatedCard?.totalUsers}
-                        percentile={100} 
+                        percentile={percentile} 
                         name={generatedCard?.username} ></CardBack>
                     </div>
                   </div>
