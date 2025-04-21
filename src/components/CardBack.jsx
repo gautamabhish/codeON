@@ -6,7 +6,7 @@ import GITHUBSVG from "../assets/githubsvg.svg";
 import Leetcode from "../assets/leetcode.svg";
 import Codeforces from "../assets/stats.svg";
 
-const CardBack = ({color, platform , totalPlayers}) => {
+const CardBack = ({color, platform , totalPlayers ,name ,percentile}) => {
   const platformImages = {
     github: GITHUBSVG,
     codeforces: Codeforces,
@@ -45,7 +45,15 @@ const CardBack = ({color, platform , totalPlayers}) => {
 
         {/* Footer (Bottom) */}
         <div className="absolute bottom-[20px] text-white text-[8px] text-center">
-          <span>&copy; THE CONTENTS OF THE CARD WERE GENERATED WITH {totalPlayers} USERS</span>
+        <div className="min-w-fit">
+  <div className="font-bold text-2xl text-yellow-400 ">{name} </div>
+  <div>is better than</div>
+  <div className="font-bold text-xl text-yellow-400">{percentile}%</div>
+  <div>of programmers so far.</div>
+          <div>&copy; THE CONTENTS OF THE CARD WERE GENERATED WITH {totalPlayers} USERS</div>
+      
+</div>
+
         </div>
 
       </div>

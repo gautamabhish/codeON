@@ -423,7 +423,9 @@ const HomePage = () => {
       }}>
                       <CardBack color={generatedCard?.color}
                         platform={generatedCard?.platform}
-                        totalPlayers={generatedCard?.totalUsers}  ></CardBack>
+                        totalPlayers={generatedCard?.totalUsers}
+                        percentile={generatedCard?.percentile} 
+                        name={generatedCard?.username} ></CardBack>
                     </div>
                   </div>
                 </div>) : (
