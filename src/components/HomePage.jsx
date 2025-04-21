@@ -73,7 +73,7 @@ const HomePage = () => {
   useEffect(() => {
     if (generatedCard) {
       const { rank, totalUsers } = generatedCard;
-       percentile = (rank / totalUsers) * 100;
+       percentile = ((totalUsers-rank) / totalUsers) * 100;
       const chosen = chooseImage(percentile);
       setCharImg(chosen);
     }
