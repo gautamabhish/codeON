@@ -425,7 +425,7 @@ const HomePage = () => {
                         platform={generatedCard?.platform}
                         totalPlayers={generatedCard?.totalUsers}
                         percentile={percentile} 
-                        name={generatedCard?.username} ></CardBack>
+                        name={generatedCard?.name} ></CardBack>
                     </div>
                   </div>
                 </div>) : (
