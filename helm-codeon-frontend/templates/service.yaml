@@ -1,0 +1,14 @@
+apiVersion : v1
+kind: Service
+metadata:
+  name: codeon-nginx-service
+  labels:
+    app: codeon
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5173
+  selector:
+    app: codeon
+  type: ClusterIP
